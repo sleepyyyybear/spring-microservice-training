@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>www.flybrownfield.com</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8"/>
+    <link href="/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+	<nav>
+       <ul>
+          <li>BrownField Airline </li>
+          <li><a th:href="@{/}">Search</a></li>
+           <li><a th:href="@{/search-booking}">CheckIn</a></li>
+        </ul>
+    </nav> 
+  <div align="center" class="form-style-8">
+	<h2>Selected Flight</h2>
+ <form action="#" th:action="@{/confirm}" th:object="${uidata}" method="post">
+ 	<table>
+     <tbody>
+		<tr>
+	   	 <td>
+		   	 <span th:text="Width"></span>
+		   	 <input type="text" th:field="${baggage.width}"/>
+	   	 </td>
+	  	 <td>
+	  	 	<span th:text="Height"></span>
+	  	 	<input type="text" th:field="${baggage.height}"/>
+	  	 </td>
+	  	 <td>
+	  		 <span th:text="Depth"></span>
+	  	 	<input type="text" th:field="${baggage.depth}"/>
+	  	 </td>
+	  	 <td>
+	  	 	<span th:text="Weight"></span>
+	  		 <input type="text" th:field="${baggage.weight}"/>
+	  	 </td>
+	 	</tr>
+	 	 </tbody>
+	</table>
+	<input type="hidden" th:field="${baggage.bookingId}"/>
+    </form>
+  </div>
+</body>
+</html>
