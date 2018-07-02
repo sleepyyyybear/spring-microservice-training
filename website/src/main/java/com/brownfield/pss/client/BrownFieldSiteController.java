@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
@@ -126,17 +125,7 @@ public class BrownFieldSiteController {
 
 			long checkinId = checkInClient.postForObject("http://baggage-apigateway/checkin-api/checkin/create", checkIn, long.class); 
 	   		model.addAttribute("message","Checked In, Seat Number is 28c , checkin id is "+ checkinId);
-	   		Baggage baggage = new Baggage();
-	   		baggage.setBookingId(Long.parseLong(bookingid));
-	   		model.addAttribute("baggage", baggage );
-	       return "baggagecheck"; 
-	}	
-	
-	@RequestMapping(value = "/checkin", method = RequestMethod.POST)
-	public String registerBaggage(@RequestBody Baggage baggage, Model model) {
-
-			long baggageId = checkInClient.postForObject("http://baggage-apigateway/baggage-api/baggage/create", baggage, long.class); 
-	   		model.addAttribute("message","Checked Baggage, Seat Number is 28c , baggage id is "+ baggageId);
 	       return "checkinconfirm"; 
 	}	
+
 }

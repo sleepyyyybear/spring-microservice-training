@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
 import com.brownfield.pss.checkin.entity.CheckInRecord;
 import com.brownfield.pss.checkin.repository.CheckinRepository;
 
@@ -15,11 +17,13 @@ public class CheckinComponent {
 
 	CheckinRepository checkinRepository;
 	Sender sender;
+	RestTemplate baggageClient;
 	
 	@Autowired
-	CheckinComponent(CheckinRepository checkinRepository, Sender sender){
+	CheckinComponent(CheckinRepository checkinRepository, Sender sender, RestTemplate baggageClient){
 		this.checkinRepository = checkinRepository;
 		this.sender = sender;
+		this.baggageClient = baggageClient;
 	}
 
 	public long checkIn(CheckInRecord checkIn) {
@@ -30,7 +34,7 @@ public class CheckinComponent {
 		logger.info("Successfully saved checkin ");
 		//send a message back to booking to update status
 		logger.info("Sending booking id "+ id);
-		sender.send(id);	
+		sender.send(id);
 		return id;
 		
 	}

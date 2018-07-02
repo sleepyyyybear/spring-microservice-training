@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Baggage {
@@ -14,21 +16,21 @@ public class Baggage {
     @GeneratedValue
 	long id;
     
-    Double width;
-    Double height;
-    Double depth;
-    Double weight;
-    Date checkInTime;
-    long bookingId;
+	String weight;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+    Date createDate;
+    long checkinId;
  
     public Baggage(){
     	
     }
  	
-	public Baggage(String lastName, String firstName, String seatNumber, Date checkInTime, String flightNumber,
-			String flightDate, long bookingId) {
+	public Baggage(String weight, Date createDate, long checkinId) {
 		super();
-		this.bookingId = bookingId;
+		this.weight = weight;
+		this.createDate = createDate;
+		this.checkinId = checkinId;
 	}
 
 	public long getId() {
