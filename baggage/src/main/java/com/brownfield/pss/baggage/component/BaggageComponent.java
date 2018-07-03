@@ -21,20 +21,20 @@ public class BaggageComponent {
 		this.baggageRepository = checkinRepository;
 	}
 
-	public long baggage(Baggage checkIn) {
-		checkIn.setCheckInTime(new Date());
+	public long addBaggage(Baggage baggage) {
+		baggage.setCreateDate(new Date());
 		logger.info("Saving baggage ");
 		//save
-		long id = baggageRepository.save(checkIn).getId();
-		logger.info("Successfully saved baggage ");
-		//send a message back to booking to update status
-		logger.info("Sending booking id "+ id);
+		long id = baggageRepository.save(baggage).getId();
+		logger.info("Successfully saved baggage " + id);
 		return id;
 		
 	}
 	
-	public Baggage getBaggageRecord(long id){
-		return baggageRepository.findOne(id);
+	public Baggage getBaggage(long id){
+		Baggage baggage = baggageRepository.findOne(id);
+		baggageRepository.delete(baggage);
+		return baggage;
 	}
 	
 }	

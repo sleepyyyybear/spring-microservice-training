@@ -15,7 +15,7 @@ import com.brownfield.pss.baggage.entity.Baggage;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/baggage")
+@RequestMapping("/baggages")
 public class BaggageController {
 
     private static final Logger LOG = LoggerFactory.getLogger(BaggageController.class);
@@ -27,16 +27,16 @@ public class BaggageController {
         this.baggageComponent = checkInComponent;
     }
 
-    @RequestMapping("/get/{id}")
-    Baggage getCheckIn (@PathVariable long id) {
-        LOG.info("GetBaggage : " + id);
-        return baggageComponent.getBaggageRecord(id);
+    @RequestMapping("/checkin/{id}")
+    Baggage getBaggage (@PathVariable long id) {
+        LOG.info("Get Baggage with id: " + id);
+        return baggageComponent.getBaggage(id);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    long checkIn (@RequestBody Baggage baggage) {
+    long addBaggage (@RequestBody Baggage baggage) {
         LOG.info("Baggage : " + baggage);
-        return baggageComponent.baggage(baggage);
+        return baggageComponent.addBaggage(baggage);
     }
 
 }

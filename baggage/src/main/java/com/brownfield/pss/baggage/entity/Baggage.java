@@ -4,9 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -16,7 +14,7 @@ public class Baggage {
     @GeneratedValue
 	long id;
     
-	String weight;
+	double weight;
 	
 	@Temporal(TemporalType.TIMESTAMP)
     Date createDate;
@@ -25,9 +23,8 @@ public class Baggage {
     public Baggage(){
     	
     }
- 	
-	public Baggage(String weight, Date createDate, long checkinId) {
-		super();
+
+	public Baggage(double weight, Date createDate, long checkinId) {
 		this.weight = weight;
 		this.createDate = createDate;
 		this.checkinId = checkinId;
@@ -41,58 +38,34 @@ public class Baggage {
 		this.id = id;
 	}
 
-	public Double getWidth() {
-		return width;
-	}
-
-	public void setWidth(Double width) {
-		this.width = width;
-	}
-
-	public Double getHeight() {
-		return height;
-	}
-
-	public void setHeight(Double height) {
-		this.height = height;
-	}
-
-	public Double getDepth() {
-		return depth;
-	}
-
-	public void setDepth(Double depth) {
-		this.depth = depth;
-	}
-
-	public Double getWeight() {
+	public double getWeight() {
 		return weight;
 	}
 
-	public void setWeight(Double weight) {
+	public void setWeight(double weight) {
 		this.weight = weight;
 	}
 
-	public Date getCheckInTime() {
-		return checkInTime;
+	public Date getCreateDate() {
+		return createDate;
 	}
 
-	public void setCheckInTime(Date checkInTime) {
-		this.checkInTime = checkInTime;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
-	public long getBookingId() {
-		return bookingId;
+	public long getCheckinId() {
+		return checkinId;
 	}
 
-	public void setBookingId(long bookingId) {
-		this.bookingId = bookingId;
+	public void setCheckinId(long checkinId) {
+		this.checkinId = checkinId;
 	}
 
 	@Override
 	public String toString() {
-		return "BaggageEntity [id=" + id + ", width=" + width + ", height=" + height + ", depth=" + depth + ", weight="
-				+ weight + ", checkInTime=" + checkInTime + ", bookingId=" + bookingId + "]";
+		return "Baggage [id=" + id + ", weight=" + weight + ", createDate=" + createDate + ", checkinId=" + checkinId
+				+ "]";
 	}
-	
+
 }
