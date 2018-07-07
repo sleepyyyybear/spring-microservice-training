@@ -26,7 +26,7 @@ public class CheckinComponent {
 		this.baggageClient = baggageClient;
 	}
 
-	public long checkIn(CheckInRecord checkIn) {
+	public CheckinInfo checkIn(CheckInRecord checkIn) {
 		checkIn.setCheckInTime(new Date());
 		logger.info("Saving checkin ");
 		//save
@@ -35,7 +35,8 @@ public class CheckinComponent {
 		//send a message back to booking to update status
 		logger.info("Sending booking id "+ id);
 		sender.send(id);
-		return id;
+		CheckinInfo checkinInfo = baggageClient.getForObject("http://baggage-apigateway/api/baggage/get/"+id, CheckinInfo.class);
+		return checkinInfo;
 		
 	}
 	

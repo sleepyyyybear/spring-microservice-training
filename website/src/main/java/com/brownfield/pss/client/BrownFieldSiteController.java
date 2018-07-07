@@ -28,9 +28,6 @@ public class BrownFieldSiteController {
 	@Autowired
 	RestTemplate checkInClient;
 	
-	@Autowired
-	RestTemplate baggageClient;
-	
     @RequestMapping(value="/", method=RequestMethod.GET)
     public String greetingForm(Model model) {
     	SearchQuery query = new  SearchQuery("NYC","SFO","22-JAN-16");
@@ -123,9 +120,9 @@ public class BrownFieldSiteController {
 			CheckInRecord checkIn = new CheckInRecord(firstName, lastName, "28C", null,
 					  									flightDate,flightDate, new Long(bookingid).longValue());
 
-			long checkinId = checkInClient.postForObject("http://baggage-apigateway/checkin-api/checkin/create", checkIn, long.class); 
-	   		model.addAttribute("message","Checked In, Seat Number is 28c , checkin id is "+ checkinId);
+			CheckinInfo checkinInfo = checkInClient.postForObject("http://baggage-apigateway/checkin-api/checkin/create", checkIn, CheckinInfo.class); 
+		model.addAttribute("message", "Checked In, Seat Number is 28c , checkin id is " + checkinInfo.getCheckinId()
+				+ ", Baggage id is" + checkinInfo.getId() + ", Weight: " + checkinInfo.getWeight());
 	       return "checkinconfirm"; 
 	}	
-
 }

@@ -27,10 +27,10 @@ public class BaggageController {
         this.baggageComponent = checkInComponent;
     }
 
-    @RequestMapping("/checkin/{id}")
-    Baggage getBaggage (@PathVariable long id) {
-        LOG.info("Get Baggage with id: " + id);
-        return baggageComponent.getBaggage(id);
+    @RequestMapping("/get/{checkinId}")
+    Baggage getBaggage (@PathVariable long checkinId) {
+        LOG.info("Get Baggage with checkin id: " + checkinId);
+        return baggageComponent.getBaggage(checkinId);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)

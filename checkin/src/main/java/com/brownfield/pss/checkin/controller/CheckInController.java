@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
+import com.brownfield.pss.checkin.component.CheckinInfo;
 import com.brownfield.pss.checkin.component.CheckinComponent;
 import com.brownfield.pss.checkin.entity.CheckInRecord;
 
@@ -21,10 +23,13 @@ public class CheckInController {
     private static final Logger LOG = LoggerFactory.getLogger(CheckInController.class);
 
     CheckinComponent checkInComponent;
+    
+	RestTemplate baggageClient;
 
     @Autowired
-    CheckInController (CheckinComponent checkInComponent) {
+    CheckInController (CheckinComponent checkInComponent, RestTemplate baggageClient) {
         this.checkInComponent = checkInComponent;
+        this.baggageClient = baggageClient;
     }
 
     @RequestMapping("/get/{id}")
@@ -34,7 +39,7 @@ public class CheckInController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    long checkIn (@RequestBody CheckInRecord checkIn) {
+    CheckinInfo checkIn (@RequestBody CheckInRecord checkIn) {
         LOG.info("CheckIn : " + checkIn);
         return checkInComponent.checkIn(checkIn);
     }
