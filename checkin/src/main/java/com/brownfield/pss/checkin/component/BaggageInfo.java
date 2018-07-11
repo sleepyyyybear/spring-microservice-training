@@ -1,21 +1,17 @@
-package com.brownfield.pss.client;
+package com.brownfield.pss.checkin.component;
 
-import java.util.Date;
-
-public class CheckinInfo {
+public class BaggageInfo {
 	long id;
     
 	double weight;
 	
-    Date createDate;
     long checkinId;
  
-    public CheckinInfo(){
+    public BaggageInfo(){
     }
 
-	public CheckinInfo(double weight, Date createDate, long checkinId) {
+	public BaggageInfo(double weight, long checkinId) {
 		this.weight = weight;
-		this.createDate = createDate;
 		this.checkinId = checkinId;
 	}
 
@@ -35,14 +31,6 @@ public class CheckinInfo {
 		this.weight = weight;
 	}
 
-	public Date getCreateDate() {
-		return createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-
 	public long getCheckinId() {
 		return checkinId;
 	}
@@ -53,7 +41,7 @@ public class CheckinInfo {
 
 	@Override
 	public String toString() {
-		return "Baggage [id=" + id + ", weight=" + weight + ", createDate=" + createDate + ", checkinId=" + checkinId
+		return "Baggage [id=" + id + ", weight=" + weight + ", checkinId=" + checkinId
 				+ "]";
 	}
 

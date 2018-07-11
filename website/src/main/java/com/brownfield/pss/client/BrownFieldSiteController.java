@@ -120,9 +120,9 @@ public class BrownFieldSiteController {
 			CheckInRecord checkIn = new CheckInRecord(firstName, lastName, "28C", null,
 					  									flightDate,flightDate, new Long(bookingid).longValue());
 
-			CheckinInfo checkinInfo = checkInClient.postForObject("http://baggage-apigateway/checkin-api/checkin/create", checkIn, CheckinInfo.class); 
-		model.addAttribute("message", "Checked In, Seat Number is 28c , checkin id is " + checkinInfo.getCheckinId()
-				+ ", Baggage id is" + checkinInfo.getId() + ", Weight: " + checkinInfo.getWeight());
+			BaggageInfo baggageInfo = checkInClient.postForObject("http://baggage-apigateway/checkin-api/checkin/create", checkIn, BaggageInfo.class); 
+			model.addAttribute("message", "Checked In, Seat Number is 28c , checkin id is " + baggageInfo.getCheckinId()
+				+ ", Baggage id is" + baggageInfo.getId() + ", Weight: " + baggageInfo.getWeight());
 	       return "checkinconfirm"; 
 	}	
 }

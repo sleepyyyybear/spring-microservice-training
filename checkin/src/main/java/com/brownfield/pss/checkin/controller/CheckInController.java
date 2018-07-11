@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.brownfield.pss.checkin.component.CheckinInfo;
+import com.brownfield.pss.checkin.component.BaggageInfo;
 import com.brownfield.pss.checkin.component.CheckinComponent;
 import com.brownfield.pss.checkin.entity.CheckInRecord;
 
@@ -39,7 +39,7 @@ public class CheckInController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    CheckinInfo checkIn (@RequestBody CheckInRecord checkIn) {
+    BaggageInfo checkIn (@RequestBody CheckInRecord checkIn) {
         LOG.info("CheckIn : " + checkIn);
         return checkInComponent.checkIn(checkIn);
     }
