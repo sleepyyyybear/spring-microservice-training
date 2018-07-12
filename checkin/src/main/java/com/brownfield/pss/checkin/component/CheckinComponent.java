@@ -26,7 +26,7 @@ public class CheckinComponent {
 		this.baggageClient = baggageClient;
 	}
 
-	public BaggageInfo checkIn(CheckInRecord checkIn) {
+	public CheckinInfo checkIn(CheckInRecord checkIn) {
 		checkIn.setCheckInTime(new Date());
 		logger.info("Saving checkin ");
 		//save
@@ -35,16 +35,16 @@ public class CheckinComponent {
 		//send a message back to booking to update status
 		logger.info("Sending booking id "+ id);
 		sender.send(id);
-		BaggageInfo baggageInfo;
+		CheckinInfo checkInInfo;
 		try {
-			baggageInfo = baggageClient.getForObject("http://baggage-apigateway/baggage-api/baggages/get/"+checkIn.getBookingId(), BaggageInfo.class);
+			checkInInfo = baggageClient.getForObject("http://baggage-apigateway/baggage-api/baggages/get/"+checkIn.getBookingId(), CheckinInfo.class);
 		} catch(Exception e) {
-			logger.info("" + checkIn.getBookingId());
-			logger.info(e.getMessage());
-			baggageInfo = new BaggageInfo();
-			baggageInfo.setCheckinId(id); 
+			logger.warn("Error happened: " + e.getMessage());
+			logger.warn("Something wrong happened when trying to grab baggages from baggage service. Will checkin without baggages.");
+			checkInInfo = new CheckinInfo();
 		}
-		return baggageInfo;
+		checkInInfo.setCheckinId(id); 
+		return checkInInfo;
 		
 	}
 	

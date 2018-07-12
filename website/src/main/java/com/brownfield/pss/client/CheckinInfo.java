@@ -1,16 +1,16 @@
-package com.brownfield.pss.checkin.component;
+package com.brownfield.pss.client;
 
-public class BaggageInfo {
+public class CheckinInfo {
 	long id;
     
 	double weight;
 	
     long checkinId;
  
-    public BaggageInfo(){
+    public CheckinInfo(){
     }
 
-	public BaggageInfo(double weight, long checkinId) {
+	public CheckinInfo(double weight, long checkinId) {
 		this.weight = weight;
 		this.checkinId = checkinId;
 	}
