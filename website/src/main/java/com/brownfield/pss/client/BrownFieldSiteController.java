@@ -73,7 +73,7 @@ public class BrownFieldSiteController {
 		long bookingId =0;
 		try { 
 			//long bookingId = bookingClient.postForObject("http://book-service/booking/create", booking, long.class); 
-			 bookingId = bookingClient.postForObject("http://baggage-apigateway/booking-api/booking/create", booking, long.class); 
+			 bookingId = bookingClient.postForObject("http://baggage-apigateway/book-api/booking/create", booking, long.class); 
 			logger.info("Booking created "+ bookingId);
 		}catch (Exception e){
 			logger.error("BOOKING SERVICE NOT AVAILABLE...!!!");
@@ -92,7 +92,7 @@ public class BrownFieldSiteController {
 	@RequestMapping(value="/search-booking-get", method=RequestMethod.POST)
 	public String searchBookingSubmit(@ModelAttribute UIData uiData, Model model) {
 		Long id = new Long(uiData.getBookingid());
- 		BookingRecord booking = bookingClient.getForObject("http://baggage-apigateway/booking-api/booking/get/"+id, BookingRecord.class);
+ 		BookingRecord booking = bookingClient.getForObject("http://baggage-apigateway/book-api/booking/get/"+id, BookingRecord.class);
 		Flight flight = new Flight(booking.getFlightNumber(), booking.getOrigin(),booking.getDestination()
 				,booking.getFlightDate(),new Fares(booking.getFare(),"AED"));
 		Passenger pax = booking.getPassengers().iterator().next();

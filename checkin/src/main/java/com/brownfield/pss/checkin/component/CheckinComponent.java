@@ -35,7 +35,15 @@ public class CheckinComponent {
 		//send a message back to booking to update status
 		logger.info("Sending booking id "+ id);
 		sender.send(id);
-		BaggageInfo baggageInfo = baggageClient.getForObject("http://baggage-apigateway/api/baggage/get/"+id, BaggageInfo.class);
+		BaggageInfo baggageInfo;
+		try {
+			baggageInfo = baggageClient.getForObject("http://baggage-apigateway/baggage-api/baggages/get/"+checkIn.getBookingId(), BaggageInfo.class);
+		} catch(Exception e) {
+			logger.info("" + checkIn.getBookingId());
+			logger.info(e.getMessage());
+			baggageInfo = new BaggageInfo();
+			baggageInfo.setCheckinId(id); 
+		}
 		return baggageInfo;
 		
 	}

@@ -1,4 +1,4 @@
-package com.brownfield.pss.baggage.controller;
+ 	package com.brownfield.pss.baggage.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +34,7 @@ public class BaggageController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    long addBaggage (@RequestBody Baggage baggage) {
+    Baggage addBaggage (@RequestBody Baggage baggage) {
         LOG.info("Baggage : " + baggage);
         return baggageComponent.addBaggage(baggage);
     }

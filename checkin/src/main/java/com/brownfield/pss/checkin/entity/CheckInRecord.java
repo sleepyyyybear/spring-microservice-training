@@ -11,8 +11,7 @@ import javax.persistence.SequenceGenerator;
 @Entity
 public class CheckInRecord {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "checkin_record_generator")
-    @SequenceGenerator(name="checkin_record_generator", sequenceName = "seq_checkinrecord", allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	long id;
     
     String lastName;
