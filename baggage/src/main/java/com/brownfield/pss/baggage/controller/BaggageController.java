@@ -1,4 +1,4 @@
- 	package com.brownfield.pss.baggage.controller;
+package com.brownfield.pss.baggage.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.brownfield.pss.baggage.component.BaggageComponent;
 import com.brownfield.pss.baggage.component.BaggageNotAvailableException;
+import com.brownfield.pss.baggage.component.BookingInfo;
 import com.brownfield.pss.baggage.entity.Baggage;
 
 @RestController
@@ -29,10 +30,10 @@ public class BaggageController {
         this.baggageComponent = checkInComponent;
     }
 
-    @RequestMapping(value = "/grab/{checkinId}", method = RequestMethod.POST)
-    Baggage grabBaggage (@PathVariable long checkinId) throws BaggageNotAvailableException {
-        LOG.info("Get Baggage with checkin id: " + checkinId);
-        return baggageComponent.grabBaggage(checkinId);
+    @RequestMapping(value = "/grab", method = RequestMethod.POST)
+    Baggage grabBaggage (@RequestBody BookingInfo bookingInfo) throws BaggageNotAvailableException {
+        LOG.info("Get Baggage with checkin id: " + bookingInfo.getBookingId());
+        return baggageComponent.grabBaggage(bookingInfo.getBookingId());
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)

@@ -37,7 +37,7 @@ public class CheckinComponent {
 		sender.send(id);
 		CheckinInfo checkInInfo;
 		try {
-			checkInInfo = baggageClient.postForObject("http://baggage-apigateway/baggage-api/baggages/grab/"+checkIn.getBookingId(), null, CheckinInfo.class);
+			checkInInfo = baggageClient.postForObject("http://baggage-apigateway/baggage-api/baggages/grab", checkIn, CheckinInfo.class);
 		} catch(Exception e) {
 			logger.warn("Error happened: " + e.getMessage());
 			logger.warn("Baggage is not available. Will checkin without baggage.");

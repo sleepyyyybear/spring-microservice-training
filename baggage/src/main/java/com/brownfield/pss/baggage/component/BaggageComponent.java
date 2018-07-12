@@ -23,6 +23,7 @@ public class BaggageComponent {
 
 	public Baggage addBaggage(Baggage baggage) {
 		baggage.setCreateDate(new Date());
+		baggage.setAvailable(true);
 		logger.info("Saving baggage ");
 		//save
 		Baggage createdBaggage = baggageRepository.save(baggage);
@@ -32,8 +33,8 @@ public class BaggageComponent {
 	}
 	
 	public Baggage grabBaggage(long checkinId) throws BaggageNotAvailableException{
-		Baggage baggage = baggageRepository.findByCheckinId(checkinId);
-		if(!baggage.isAvailable()) {
+		Baggage baggage = baggageRepository.findByBookingId(checkinId);
+		if(baggage == null || !baggage.isAvailable()) {
 			throw new BaggageNotAvailableException("Baggage is not available!");
 		}
 		baggage.setAvailable(false);

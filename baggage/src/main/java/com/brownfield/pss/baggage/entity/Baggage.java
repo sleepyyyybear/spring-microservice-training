@@ -20,17 +20,17 @@ public class Baggage {
 	
 	@Temporal(TemporalType.TIMESTAMP)
     Date createDate;
-    long checkinId;
+    long bookingId;
  
     public Baggage(){
     	
     }
 
-	public Baggage(double weight, Date createDate, long checkinId) {
+	public Baggage(double weight, Date createDate, long bookingId) {
 		this.weight = weight;
 		this.createDate = new Date();
 		this.available = true;
-		this.checkinId = checkinId;
+		this.bookingId = bookingId;
 	}
 
 	public long getId() {
@@ -66,17 +66,17 @@ public class Baggage {
 		this.createDate = createDate;
 	}
 
-	public long getCheckinId() {
-		return checkinId;
+	public long getBookingId() {
+		return bookingId;
 	}
 
-	public void setCheckinId(long checkinId) {
-		this.checkinId = checkinId;
+	public void setBookingId(long bookingId) {
+		this.bookingId = bookingId;
 	}
 
 	@Override
 	public String toString() {
-		return "Baggage [id=" + id + ", weight=" + weight + ", createDate=" + createDate + ", checkinId=" + checkinId
+		return "Baggage [id=" + id + ", weight=" + weight + ", createDate=" + createDate + ", bookingId=" + bookingId
 				+ "]";
 	}
 

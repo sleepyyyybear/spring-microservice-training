@@ -6,5 +6,5 @@ import com.brownfield.pss.baggage.entity.Baggage;
 
 public interface BaggageRepository extends JpaRepository<Baggage,Long> {
 
-	Baggage findByCheckinId(long checkinId);
+	Baggage findByBookingId(long bookingId);
 }
