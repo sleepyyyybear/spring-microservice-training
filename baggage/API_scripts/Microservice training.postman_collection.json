@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "f96c88de-80dd-40ff-a485-c4e8978d715f",
+		"name": "Microservice training",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create baggage",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"weight\": 1.2,\n\t\"bookingId\": 1\n}"
+				},
+				"url": {
+					"raw": "localhost:8170/baggages/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8170",
+					"path": [
+						"baggages",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Grab baggage",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"bookingId\": 1\n}"
+				},
+				"url": {
+					"raw": "localhost:8170/baggages/grab",
+					"host": [
+						"localhost"
+					],
+					"port": "8170",
+					"path": [
+						"baggages",
+						"grab"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

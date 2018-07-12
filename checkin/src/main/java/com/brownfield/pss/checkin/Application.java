@@ -28,11 +28,6 @@ public class Application implements CommandLineRunner {
 	public void run(String... strings) throws Exception {
 		logger.info("Service initialized successfully.");
 	}
-
-	@Bean
-	public RestTemplate baggageClient() {
-		return new RestTemplate();
-	}
 }
 
 @Configuration
