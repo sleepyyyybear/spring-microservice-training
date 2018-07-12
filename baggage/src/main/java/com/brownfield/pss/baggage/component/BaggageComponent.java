@@ -31,10 +31,13 @@ public class BaggageComponent {
 		
 	}
 	
-	public Baggage getBaggage(long id){
-		Baggage baggage = baggageRepository.findByCheckinId(id);
-		//baggageRepository.delete(baggage);
-		return baggage;
+	public Baggage grabBaggage(long checkinId) throws BaggageNotAvailableException{
+		Baggage baggage = baggageRepository.findByCheckinId(checkinId);
+		if(!baggage.isAvailable()) {
+			throw new BaggageNotAvailableException("Baggage is not available!");
+		}
+		baggage.setAvailable(false);
+		return baggageRepository.save(baggage);
 	}
 	
 }

@@ -8,12 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Baggage {
     @Id
     @GeneratedValue
 	long id;
-    
+    boolean available;
 	double weight;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -26,7 +28,8 @@ public class Baggage {
 
 	public Baggage(double weight, Date createDate, long checkinId) {
 		this.weight = weight;
-		this.createDate = createDate;
+		this.createDate = new Date();
+		this.available = true;
 		this.checkinId = checkinId;
 	}
 
@@ -44,6 +47,15 @@ public class Baggage {
 
 	public void setWeight(double weight) {
 		this.weight = weight;
+	}
+
+	@JsonIgnore
+	public boolean isAvailable() {
+		return available;
+	}
+
+	public void setAvailable(boolean available) {
+		this.available = available;
 	}
 
 	public Date getCreateDate() {
