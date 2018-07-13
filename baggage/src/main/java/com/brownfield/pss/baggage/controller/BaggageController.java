@@ -32,7 +32,7 @@ public class BaggageController {
 
     @RequestMapping(value = "/grab", method = RequestMethod.POST)
     Baggage grabBaggage (@RequestBody BookingInfo bookingInfo) throws BaggageNotAvailableException {
-        LOG.info("Get Baggage with checkin id: " + bookingInfo.getBookingId());
+        LOG.info("Get Baggage with booking id: " + bookingInfo.getBookingId());
         return baggageComponent.grabBaggage(bookingInfo.getBookingId());
     }
 

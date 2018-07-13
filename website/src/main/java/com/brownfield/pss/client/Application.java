@@ -25,9 +25,6 @@ public class Application implements CommandLineRunner {
 
 	@Autowired
 	RestTemplate checkInClient;
-	
-	@Autowired
-	RestTemplate baggageClient;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
